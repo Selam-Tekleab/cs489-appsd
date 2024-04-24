@@ -1,0 +1,21 @@
+version: '3.1'
+services:
+  db:
+    image: mysql
+    restart: always
+    environment:
+      MARIADB_DATABASE: ADS
+      MARIADB_ROOT_PASSWORD: GodGrace20
+
+  app:
+    build:
+        context: .
+        dockerfile: Dockerfile
+    depends_on:
+      - db
+    ports:
+      - "8080:8080"
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:mysql://db:3306/ADS
+      SPRING_DATASOURCE_USERNAME: root
+      SPRING_DATASOURCE_PASSWORD: GodGrace20
